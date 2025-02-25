@@ -2,234 +2,116 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 
-	let textPathElement;
-	let computedWidth;
+	let copy = `Fatema has the mind of a celestial being and the heart of a seven year old. She will say I love you on the second date and she will mean it. Every year I hope Fatema is my secret santa. In middle school Fatema was the goat. She is like if a personality hire was overqualified. I would trust Fatema to cut my bangs. Being on her close friends story is like watching Michelangelo paint the Sistine Chapel. I've never met anyone who cares more about whales. We call her FatGPT.  `;
+	let repeatedCopy = copy;
 
-	let svgDoc;
+	onMount(async () => {
+		// Add more copies and extra spaces between them for smoother coverage
+		repeatedCopy = `${copy} ${copy} ${copy} ${copy} ${copy} ${copy} ${copy}`;
 
-	async function handleSvgLoad(event) {
-		console.log('SVG loaded');
-		svgDoc = event.target.contentDocument;
-		if (!svgDoc) {
-			console.error('No SVG document found');
-			return;
-		}
+		// Create two identical text paths for seamless looping
+		const createTimeline = () => {
+			const tl = gsap.timeline();
+			tl.fromTo(
+				'#mainTextPath',
+				{ attr: { startOffset: '-50%' } },
+				{ ease: 'none', duration: 100, attr: { startOffset: '50%' } },
+				0
+			);
+			return tl;
+		};
 
-		// Find the SVG element and the path
-		const svgElement = svgDoc.querySelector('svg');
-		const path = svgDoc.querySelector('path');
-		if (!path || !svgElement) {
-			console.error('Required elements not found');
-			return;
-		}
-
-		// Set ID for the path and make it visible with a unique color
-		path.id = 'svgPath';
-		path.style.stroke = '#FF0000'; // Bright red for visibility
-		path.style.strokeWidth = '2';
-		path.style.fill = 'none';
-
-		// Split the path into sections and color them uniquely
-		const colors = [
-			'#FF0000', // Red
-			'#00FF00', // Green
-			'#0000FF', // Blue
-			'#FF00FF', // Magenta
-			'#00FFFF', // Cyan
-			'#FFA500', // Orange
-			'#800080', // Purple
-			'#008000', // Dark Green
-			'#FFC0CB', // Pink
-			'#FFD700'  // Gold
-		];
-
-		// Create multiple paths from the original
-		const pathData = path.getAttribute('d');
-		const pathSegments = pathData.split('M').filter(Boolean);
-		
-		pathSegments.forEach((segment, index) => {
-			const newPath = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'path');
-			newPath.setAttribute('d', 'M' + segment);
-			newPath.style.stroke = colors[index % colors.length];
-			newPath.style.strokeWidth = '2';
-			newPath.style.fill = 'none';
-			path.parentNode.appendChild(newPath);
-		});
-
-		// Hide original path
-		path.style.stroke = 'none';
-
-		// Find and adjust any rectangles to be full size
-		const rect = svgDoc.querySelector('rect');
-		if (rect) {
-			rect.setAttribute('width', '100%');
-			rect.setAttribute('height', '100%');
-			rect.setAttribute('x', '0');
-			rect.setAttribute('y', '0');
-		}
-
-		// Wait a moment for SVG to be fully loaded
-		await new Promise(resolve => setTimeout(resolve, 100));
-
-		// Get and log all relevant dimensions
-		const bbox = svgElement.getBBox();
-		const viewBox = svgElement.getAttribute('viewBox');
-		const clientRect = svgElement.getBoundingClientRect();
-
-		console.log('Original bbox:', bbox);
-		console.log('Original viewBox:', viewBox);
-		console.log('Client rect:', clientRect);
-		console.log('Window dimensions:', window.innerWidth, window.innerHeight);
-
-		// Lock SVG dimensions
-		const containerWidth = window.innerWidth;
-		const containerHeight = window.innerHeight;
-		
-		// Remove any existing attributes that might cause auto-scaling
-		svgElement.removeAttribute('width');
-		svgElement.removeAttribute('height');
-		svgElement.removeAttribute('preserveAspectRatio');
-		
-		// Set fixed dimensions
-		svgElement.setAttribute('width', containerWidth);
-		svgElement.setAttribute('viewBox', '0 0 1440 812');
-		svgElement.style.width = containerWidth + 'px';
-		svgElement.style.maxWidth = 'none';
-		svgElement.style.position = 'absolute';
-		svgElement.style.left = '0';
-		svgElement.style.top = '50%';
-		svgElement.style.transform = 'translateY(-50%)';
-		
-		// Calculate and set height to maintain aspect ratio
-		const aspectRatio = 812 / 1440; // viewBox height / width
-		const height = containerWidth * aspectRatio;
-		svgElement.style.height = height + 'px';
-
-		// Add font definition to SVG
-		const defs = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
-		const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
-		style.textContent = `
-			@font-face {
-				font-family: 'ApercuMono';
-				src: url('/assets/ApercuMono.ttf') format('truetype');
-			}
-		`;
-		defs.appendChild(style);
-		svgElement.insertBefore(defs, svgElement.firstChild);
-
-		// Create text element with textPath
-		const text = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'text');
-		const textPath = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'textPath');
-		textPath.setAttributeNS(null, 'href', '#svgPath');
-		textPath.setAttributeNS(null, 'style', 'fill: black; font-size: 1rem; letter-spacing: 0.02em; word-spacing: 0.2em; font-family: ApercuMono;');
-		textPath.textContent = repeatedText + repeatedText + repeatedText;
-
-		// Add elements to SVG
-		text.appendChild(textPath);
-		svgElement.appendChild(text);
-
-		// Store reference
-		textPathElement = textPath;
-
-		// Start animation with a small delay to ensure font is loaded
-		setTimeout(animateTextPath, 100);
-	}
-
-	// Create text content with variations
-	const baseText =
-		'Fatema has the mind of a celestial being and the heart of a seven year old. She will say I love you on the second date and she will mean it. Every year I hope Fatema is my secret santa. In middle school Fatema was the goat. She is like if a personality hire was overqualified. I would trust Fatema to cut my bangs. Being on her close friends story is like watching Michelangelo paint the Sistine Chapel. I’ve never met anyone who cares more about whales. We call her FatGPT.  ';
-	const repeatedText = Array(4).fill(baseText).join('');
-
-	// No longer need font loading here as it's handled in the SVG
-
-	function animateTextPath() {
-		console.log('Starting animation');
-
-		// Wait for text path to be ready
-		if (!textPathElement) {
-			console.error('Text path element not found');
-			return;
-		}
-
-		// Get the path
-		const path = svgDoc.getElementById('svgPath');
-		if (!path) {
-			console.error('Path not found');
-			return;
-		}
-
-		// Set initial position
-		textPathElement.setAttribute('startOffset', '0');
-		textPathElement.style.opacity = '1';
-
-		// Create timeline for smooth animation
-		gsap.to(textPathElement, {
-			duration: 60,
-			attr: { startOffset: -3000 }, // Use a fixed offset
-			ease: 'none',
+		// Create master timeline
+		const masterTl = gsap.timeline({
 			repeat: -1,
-			repeatDelay: 0
+			onRepeat: () => {
+				// Smoothly reset to start position
+				gsap.set('#mainTextPath', { attr: { startOffset: '-50%' } });
+			},
 		});
 
-		console.log('Animation started');
-	}
-
-	// No longer need onMount handler for font loading
+		// Add the animation
+		masterTl.add(createTimeline());
+	});
 </script>
 
 <div class="container">
-	<object
-		data="/assets/pathwithimages.svg"
-		type="image/svg+xml"
-		class="svg-object"
-		on:load={handleSvgLoad}
-	/>
+	<img src="/assets/left.png" alt="Left hand" class="hand left-hand" />
+	<img src="/assets/right.png" alt="Right hand" class="hand right-hand" />
+	<svg
+		width="800"
+		height="340"
+		viewBox="0 0 1062 454"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<!-- Combined Path -->
+		<path
+			class="path-section"
+			id="combined-path"
+			d="M911.766 300.926C811.688 364.583 656.67 430.546 435.718 449.043C163.442 471.836 63.3713 405.942 49.9973 381.295C39.3929 361.753 44.1723 347.421 44.1723 347.421C51.3725 325.83 82.6843 318.302 88.4144 316.924C101.371 313.81 112.488 314.455 119.391 315.36 M205.5 358.126C235.778 357.794 275.801 356.706 334.915 352.769C334.915 352.769 784.291 322.84 920.807 164.031C929.067 154.422 936.809 143.125 933.288 134.887C930.008 127.215 917.947 124.512 900.143 124.845 M840.894 131.62C798.899 138.522 748.772 148.939 703.867 154.371C617.135 164.864 514.963 173.901 359 120.32 M308.5 104.5C263.617 103.313 246.174 112.517 243.078 120.32C227.749 158.959 391.224 273.701 565.202 325.203C699.515 364.963 793.898 353.358 806.076 332.223C812.052 321.849 810.167 312.913 810.167 312.913C806.841 297.153 786.121 290.047 781.482 288.557 M717.5 257.518C501.512 156.495 358.352 87.7084 290 66 M36 68.5C41.56 71.9215 42.2947 72.9903 46.5 75 M823.5 181.5C837.086 178.345 847.113 177.23 860 173.854 M135.04 20.8871C117.988 14.9878 103.428 10.9689 92.67 8.28206C47.1509 -3.08526 30.76 -0.327471 19.7641 3.98928C4.70627 9.90048 1.7291 17.9638 1.16367 19.6642C0.0601073 22.9831 0.0907751 26.2041 0.504311 28.8833 M217.5 42.8521C213.326 41.5789 211.638 40.8839 207 39.5 M168 156.5C175.025 161.373 179.747 164.354 186.773 169.227 M922.5 155C941.866 149.016 955.254 144.325 972.56 138.217 M268.134 204.915C366.841 219.864 499.826 229.708 654.812 211.755C698.875 206.651 730.388 199.783 769.5 191.766 M1030.83 124.485C1039.12 124.98 1053.01 127.136 1059.17 137.089C1059.17 137.089 1065.94 148.027 1057.6 168.6C1053.35 179.078 1026.69 214.405 973.688 256.814"
+			stroke="black"
+			stroke-width="2"
+			stroke-miterlimit="10"
+		/>
+
+		<text
+			id="mainText"
+			fill="black"
+			style="font-size: 16px; letter-spacing: 2px; word-spacing: 0.2em; font-family: MaisonMono-Medium, helvetica, sans-serif;"
+			dy="0"
+		>
+			<textPath
+				id="mainTextPath"
+				xlink:href="#combined-path"
+				startOffset="-50%"
+				method="align"
+				spacing="auto">{repeatedCopy}</textPath
+			>
+		</text>
+	</svg>
 </div>
 
-<style>
+<style lang="scss">
 	.container {
 		width: 100vw;
 		height: 100vh;
 		overflow: hidden;
 		position: relative;
-		background: white;
+		background: wheat;
 		display: block;
 		margin: 0;
 		padding: 0;
-		min-width: 100vw;
-		max-width: 100vw;
-	}
 
-	.svg-object {
-		width: 100vw !important;
-		position: absolute;
-		left: 0;
-		margin: 0;
-		padding: 0;
-		display: block;
-		max-width: none !important;
-		top: 50%;
-		transform: translateY(-50%) !important;
-	}
+		.hand {
+			position: absolute;
+			height: auto;
+			z-index: 1;
+		}
 
-	.text-overlay {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		overflow: visible;
-		z-index: 10;
-	}
+		.left-hand {
+			width: 40vw; /* 797.72px/1440px */
+			height: 100%; /* 421.1px/812px */
+			left: 0; /* -148px/1440px */
+			top: -2vh; /* 401.5px/812px */
+			transform: rotate(9.22deg);
+		}
 
-	.text-overlay path {
-		fill: none;
-		stroke: none;
-	}
+		.right-hand {
+			width: 32vw;
+			right: 1%; /* 92px/1440px */
+			bottom: 0;
+		}
 
-	
-
-	textPath {
-		opacity: 0;
+		svg {
+			position: absolute;
+			overflow: visible;
+			z-index: 2;
+			width: 79.75vw; /* 1062px/1440px */
+			height: 90.5vh; /* 451px/812px */
+			left: 10.86%; /* 286px/1440px */
+			top: 50%;
+			transform: translateY(-55%);
+		}
 	}
 </style>

@@ -1,0 +1,193 @@
+{
+  "patterns": [
+    {
+      "id": "pattern0_2069_771",
+      "attributes": [
+        "id=\"pattern0_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image0_2069_771\"",
+        "transform=\"scale(0.000893655 0.000880357)\""
+      ]
+    },
+    {
+      "id": "pattern1_2069_771",
+      "attributes": [
+        "id=\"pattern1_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image0_2069_771\"",
+        "transform=\"matrix(0.00543621 0 0 0.00627995 0 -0.000303563)\""
+      ]
+    },
+    {
+      "id": "pattern2_2069_771",
+      "attributes": [
+        "id=\"pattern2_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image0_2069_771\"",
+        "transform=\"matrix(0.00543621 0 0 0.00627995 0 -0.000303563)\""
+      ]
+    },
+    {
+      "id": "pattern3_2069_771",
+      "attributes": [
+        "id=\"pattern3_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image0_2069_771\"",
+        "transform=\"matrix(0.00433629 0 0 0.00470809 -4.14313 -0.846954)\""
+      ]
+    },
+    {
+      "id": "pattern4_2069_771",
+      "attributes": [
+        "id=\"pattern4_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image1_2069_771\"",
+        "transform=\"matrix(0.0108174 0 0 0.0118126 -2.58018 -11.5178)\""
+      ]
+    },
+    {
+      "id": "pattern5_2069_771",
+      "attributes": [
+        "id=\"pattern5_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image1_2069_771\"",
+        "transform=\"matrix(0.0108174 0 0 0.0118126 -2.58018 -11.5178)\""
+      ]
+    },
+    {
+      "id": "pattern6_2069_771",
+      "attributes": [
+        "id=\"pattern6_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image1_2069_771\"",
+        "transform=\"matrix(0.0108174 0 0 0.0118126 -2.58018 -11.5178)\""
+      ]
+    },
+    {
+      "id": "pattern7_2069_771",
+      "attributes": [
+        "id=\"pattern7_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image2_2069_771\"",
+        "transform=\"matrix(0.00173401 0 0 0.00277778 -0.00112783 0)\""
+      ]
+    },
+    {
+      "id": "pattern8_2069_771",
+      "attributes": [
+        "id=\"pattern8_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image3_2069_771\"",
+        "transform=\"matrix(0.000758725 0 0 0.000487092 -1.95903 -0.484169)\""
+      ]
+    },
+    {
+      "id": "pattern9_2069_771",
+      "attributes": [
+        "id=\"pattern9_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image4_2069_771\"",
+        "transform=\"matrix(0.000412201 0 0 0.00078064 -0.0754328 -0.211553)\""
+      ]
+    },
+    {
+      "id": "pattern10_2069_771",
+      "attributes": [
+        "id=\"pattern10_2069_771\"",
+        "patternContentUnits=\"objectBoundingBox\"",
+        "width=\"1\"",
+        "height=\"1\"",
+        "href=\"#image5_2069_771\"",
+        "transform=\"scale(0.000484496 0.000581395)\""
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip0_2069_771",
+      "content": "<clipPath id=\"clip0_2069_771\">\n<rect width=\"1440\" height=\"812\" fill=\"white\"/>\n</clipPath>"
+    },
+    {
+      "id": "clip1_2069_771",
+      "content": "<clipPath id=\"clip1_2069_771\">\n<rect width=\"1062\" height=\"454\" fill=\"white\" transform=\"translate(286 141)\"/>\n</clipPath>"
+    }
+  ],
+  "masks": [],
+  "images": [
+    {
+      "id": "image0_2069_771",
+      "width": "1119",
+      "height": "1136"
+    },
+    {
+      "id": "image1_2069_771",
+      "width": "1119",
+      "height": "1136"
+    },
+    {
+      "id": "image2_2069_771",
+      "width": "578",
+      "height": "360"
+    },
+    {
+      "id": "image3_2069_771",
+      "width": "4096",
+      "height": "3277"
+    },
+    {
+      "id": "image4_2069_771",
+      "width": "4096",
+      "height": "3277"
+    },
+    {
+      "id": "image5_2069_771",
+      "width": "2064",
+      "height": "1720"
+    }
+  ],
+  "transforms": [
+    "transform=\"rotate(52.3332 1480.34 -122.723)\"",
+    "transform=\"rotate(52.3332 1397.99 106.987)\"",
+    "transform=\"rotate(-38.2463 1365.41 241.969)\"",
+    "transform=\"rotate(52.3332 1394.51 152.19)\"",
+    "transform=\"rotate(-69.3359 1357.5 238.749)\"",
+    "transform=\"rotate(-109.471 1434.01 204.095)\"",
+    "transform=\"rotate(-69.3359 1404 94.5856)\"",
+    "transform=\"rotate(-180 304 854)\"",
+    "transform=\"rotate(9.97171 1043.36 170)\"",
+    "transform=\"rotate(-31.2221 -148 401.503)\"",
+    "transform=\"rotate(29.2155 162.972 646.401)\"",
+    "transform=\"scale(0.000893655 0.000880357)\"",
+    "transform=\"matrix(0.00543621 0 0 0.00627995 0 -0.000303563)\"",
+    "transform=\"matrix(0.00543621 0 0 0.00627995 0 -0.000303563)\"",
+    "transform=\"matrix(0.00433629 0 0 0.00470809 -4.14313 -0.846954)\"",
+    "transform=\"matrix(0.0108174 0 0 0.0118126 -2.58018 -11.5178)\"",
+    "transform=\"matrix(0.0108174 0 0 0.0118126 -2.58018 -11.5178)\"",
+    "transform=\"matrix(0.0108174 0 0 0.0118126 -2.58018 -11.5178)\"",
+    "transform=\"matrix(0.00173401 0 0 0.00277778 -0.00112783 0)\"",
+    "transform=\"matrix(0.000758725 0 0 0.000487092 -1.95903 -0.484169)\"",
+    "transform=\"matrix(0.000412201 0 0 0.00078064 -0.0754328 -0.211553)\"",
+    "transform=\"scale(0.000484496 0.000581395)\"",
+    "transform=\"translate(286 141)\""
+  ]
+}
