@@ -38,13 +38,14 @@
 <div class="container">
 	<img src="/assets/left.png" alt="Left hand" class="hand left-hand" />
 	<img src="/assets/right.png" alt="Right hand" class="hand right-hand" />
-	<svg
-		width="800"
-		height="340"
-		viewBox="0 0 1062 454"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-	>
+	<div class="svg-container">
+		<svg
+			width="1440"
+			height="812"
+			viewBox="0 0 1440 812"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 		<!-- Combined Path -->
 		<path
 			class="path-section"
@@ -66,10 +67,11 @@
 				xlink:href="#combined-path"
 				startOffset="-50%"
 				method="align"
-				spacing="auto">{repeatedCopy}</textPath
-			>
+				spacing="auto"
+			>{repeatedCopy}</textPath>
 		</text>
 	</svg>
+	</div>
 </div>
 
 <style lang="scss">
@@ -78,8 +80,7 @@
 		height: 100vh;
 		overflow: hidden;
 		position: relative;
-		background: wheat;
-		display: block;
+		background: white;
 		margin: 0;
 		padding: 0;
 
@@ -90,28 +91,37 @@
 		}
 
 		.left-hand {
-			width: 40vw; /* 797.72px/1440px */
-			height: 100%; /* 421.1px/812px */
-			left: 0; /* -148px/1440px */
-			top: -2vh; /* 401.5px/812px */
-			transform: rotate(9.22deg);
+			width: 55.4vw;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%) rotate(-31.2221deg);
+			transform-origin: left center;
 		}
 
 		.right-hand {
-			width: 32vw;
-			right: 1%; /* 92px/1440px */
+			width: 30.21vw;
+			right: 6.4vw;
 			bottom: 0;
+			transform: rotate(9.97171deg);
+			transform-origin: bottom right;
 		}
 
-		svg {
+		.svg-container {
 			position: absolute;
-			overflow: visible;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			z-index: 2;
-			width: 79.75vw; /* 1062px/1440px */
-			height: 90.5vh; /* 451px/812px */
-			left: 10.86%; /* 286px/1440px */
-			top: 50%;
-			transform: translateY(-55%);
+
+			svg {
+				width: 80%;
+				height: auto;
+				overflow: visible;
+			}
 		}
 	}
 </style>
