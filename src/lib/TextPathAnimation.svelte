@@ -2,36 +2,34 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 
-	let copy = `Fatema has the mind of a celestial being and the heart of a seven year old. She will say I love you on the second date and she will mean it. Every year I hope Fatema is my secret santa. In middle school Fatema was the goat. She is like if a personality hire was overqualified. I would trust Fatema to cut my bangs. Being on her close friends story is like watching Michelangelo paint the Sistine Chapel. I've never met anyone who cares more about whales. We call her FatGPT.  `;
+	let copy = `Fatema has the mind of a celestial being and the heart of a seven year old. She will say I love you on the second date and she will mean it. Every year I hope Fatema is my secret santa. In middle school Fatema was the goat. She is like if a personality hire was overqualified. I would trust Fatema to cut my bangs. Being on her close friends story is like watching Michelangelo paint the Sistine Chapel. I've never met anyone who cares more about whales. We call her FatGPT.`;
 	let repeatedCopy = copy;
 
 	onMount(async () => {
 		// Add more copies and extra spaces between them for smoother coverage
-		repeatedCopy = `${copy} ${copy} ${copy} ${copy} ${copy} ${copy} ${copy}`;
+		repeatedCopy = `${copy}`;
 
 		// Create two identical text paths for seamless looping
 		const createTimeline = () => {
-			const tl = gsap.timeline();
+			const tl = gsap.timeline({
+				repeat: -1,
+			});
 			tl.fromTo(
 				'#mainTextPath',
-				{ attr: { startOffset: '-50%' } },
-				{ ease: 'none', duration: 100, attr: { startOffset: '50%' } },
+				{ attr: { startOffset: '0%' } },
+				{ ease: 'none', duration: 100, attr: { startOffset: '100%' } },
+				0
+			);
+			tl.fromTo(
+				'#mainTextPathClone',
+				{ attr: { startOffset: '-101%' } },
+				{ ease: 'none', duration: 100, attr: { startOffset: '0%' } },
 				0
 			);
 			return tl;
 		};
 
-		// Create master timeline
-		const masterTl = gsap.timeline({
-			repeat: -1,
-			onRepeat: () => {
-				// Smoothly reset to start position
-				gsap.set('#mainTextPath', { attr: { startOffset: '-50%' } });
-			},
-		});
-
-		// Add the animation
-		masterTl.add(createTimeline());
+		createTimeline();
 	});
 </script>
 
@@ -64,6 +62,20 @@
 					id="mainTextPath"
 					xlink:href="#combined-path"
 					startOffset="-50%"
+					method="align"
+					spacing="auto">{repeatedCopy}</textPath
+				>
+			</text>
+			<text
+				id="mainTextClone"
+				fill="black"
+				style="font-size: 16px; letter-spacing: 2px; word-spacing: 0.2em; font-family: MaisonMono-Medium, helvetica, sans-serif;"
+				dy="0"
+			>
+				<textPath
+					id="mainTextPathClone"
+					xlink:href="#combined-path"
+					startOffset="0%"
 					method="align"
 					spacing="auto">{repeatedCopy}</textPath
 				>
